@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Ilia Rakin</title>
+    <link rel="stylesheet" href="assets/css/normalize.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <style>
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: var(--bg-card);
+        }
+        .cv-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+        .cv-header h1 {
+            margin: 0 0 10px;
+            color: var(--text);
+        }
+        .cv-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .cv-section {
+            margin-bottom: 30px;
+        }
+        .cv-section h2 {
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .cv-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .cv-item-title {
+            font-weight: 600;
+            color: var(--text);
+        }
+        .cv-item-date {
+            color: var(--text-secondary);
+        }
+        @media print {
+            .cv-actions { display: none; }
+            .cv-container { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <div class="cv-header">
+            <h1>Ilia Rakin</h1>
+            <p>Software Engineer</p>
+            <div>
+                <a href="mailto:rakinilia@gmail.com">rakinilia@gmail.com</a> | 
+                <a href="https://linkedin.com/in/irakin" target="_blank">LinkedIn</a> | 
+                <a href="https://github.com/xhackerino" target="_blank">GitHub</a>
+            </div>
+            <div class="cv-actions">
+                <button onclick="window.print()" class="modal-btn primary">🖨️ Print / Save as PDF</button>
+                <a href="/cv.pdf" download class="modal-btn secondary">📥 Download PDF</a>
+                <a href="/" class="modal-btn secondary">← Back to Home</a>
+            </div>
+        </div>
+
+        <div class="cv-section">
+            <h2>Professional Summary</h2>
+            <p>Experienced software engineer specializing in full-stack development, cloud infrastructure, and scalable system architecture. Passionate about building efficient, user-friendly applications and contributing to open-source projects.</p>
+        </div>
+
+        <div class="cv-section">
+            <h2>Experience</h2>
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span class="cv-item-title">Software Engineer</span>
+                    <span class="cv-item-date">2022 - Present</span>
+                </div>
+                <div><strong>Tech Company</strong></div>
+                <p>Building scalable web applications and microservices. Led development of multiple features, improved system performance by 40%, and mentored junior developers.</p>
+            </div>
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span class="cv-item-title">Full-Stack Developer</span>
+                    <span class="cv-item-date">2020 - 2022</span>
+                </div>
+                <div><strong>Startup Inc</strong></div>
+                <p>Developed MVP from scratch and scaled to production. Implemented CI/CD pipelines, designed database schemas, and built responsive frontend interfaces.</p>
+            </div>
+        </div>
+
+        <div class="cv-section">
+            <h2>Education</h2>
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span class="cv-item-title">Bachelor of Science in Computer Science</span>
+                    <span class="cv-item-date">2016 - 2020</span>
+                </div>
+                <div><strong>University Name</strong></div>
+            </div>
+        </div>
+
+        <div class="cv-section">
+            <h2>Skills</h2>
+            <div class="tech-badges">
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Node.js</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">AWS</span>
+                <span class="tech-badge">Git</span>
+            </div>
+        </div>
+
+        <div class="cv-section">
+            <h2>Languages</h2>
+            <ul>
+                <li>English - Native</li>
+                <li>Finnish - Fluent</li>
+                <li>Russian - Native</li>
+                <li>German - Intermediate</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

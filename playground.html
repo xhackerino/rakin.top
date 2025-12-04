@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Playground - Ilia Rakin</title>
+    <link rel="stylesheet" href="assets/css/normalize.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <style>
+        .playground-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .playground-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .demo-card {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .demo-card h2 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+        .demo-input, .demo-output {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        .demo-output {
+            min-height: 100px;
+            white-space: pre-wrap;
+        }
+        .demo-btn {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .demo-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="playground-container">
+        <div class="playground-header">
+            <h1>🛠️ Tech Playground</h1>
+            <p>Interactive demos showcasing JavaScript skills</p>
+            <a href="/" class="modal-btn secondary">← Back to Home</a>
+        </div>
+
+        <div class="demo-card">
+            <h2>JSON Sorter</h2>
+            <p>Sort JSON objects by any key</p>
+            <textarea class="demo-input" id="jsonInput" placeholder='[{"name":"Alice","age":30},{"name":"Bob","age":25}]'></textarea>
+            <input type="text" class="demo-input" id="sortKey" placeholder="Sort by key (e.g., 'age')" style="width: auto; display: inline-block; margin-right: 10px;">
+            <button class="demo-btn" onclick="sortJSON()">Sort JSON</button>
+            <textarea class="demo-output" id="jsonOutput" readonly></textarea>
+        </div>
+
+        <div class="demo-card">
+            <h2>REST API Viewer</h2>
+            <p>Fetch and display data from a public API</p>
+            <input type="text" class="demo-input" id="apiUrl" placeholder="https://api.github.com/users/github" style="width: auto; display: inline-block; margin-right: 10px;">
+            <button class="demo-btn" onclick="fetchAPI()">Fetch API</button>
+            <textarea class="demo-output" id="apiOutput" readonly></textarea>
+        </div>
+
+        <div class="demo-card">
+            <h2>LocalStorage Demo</h2>
+            <p>Store and retrieve data from browser localStorage</p>
+            <input type="text" class="demo-input" id="storageKey" placeholder="Key" style="width: auto; display: inline-block; margin-right: 10px;">
+            <input type="text" class="demo-input" id="storageValue" placeholder="Value" style="width: auto; display: inline-block; margin-right: 10px;">
+            <button class="demo-btn" onclick="saveToStorage()">Save</button>
+            <button class="demo-btn" onclick="loadFromStorage()">Load</button>
+            <button class="demo-btn" onclick="clearStorage()">Clear</button>
+            <textarea class="demo-output" id="storageOutput" readonly></textarea>
+        </div>
+
+        <div class="demo-card">
+            <h2>Custom Animation</h2>
+            <p>Interactive CSS animation demo</p>
+            <div style="text-align: center; padding: 40px;">
+                <div id="animatedBox" style="width: 100px; height: 100px; background: var(--accent); border-radius: 12px; margin: 0 auto; cursor: pointer;" onclick="animateBox()"></div>
+            </div>
+            <button class="demo-btn" onclick="animateBox()" style="display: block; margin: 20px auto;">Animate</button>
+        </div>
+    </div>
+
+    <script>
+        function sortJSON() {
+            try {
+                const input = document.getElementById("jsonInput").value;
+                const key = document.getElementById("sortKey").value;
+                const data = JSON.parse(input);
+                const sorted = Array.isArray(data) ? data.sort((a, b) => {
+                    if (a[key] < b[key]) return -1;
+                    if (a[key] > b[key]) return 1;
+                    return 0;
+                }) : data;
+                document.getElementById("jsonOutput").value = JSON.stringify(sorted, null, 2);
+            } catch (e) {
+                document.getElementById("jsonOutput").value = "Error: " + e.message;
+            }
+        }
+
+        async function fetchAPI() {
+            try {
+                const url = document.getElementById("apiUrl").value || "https://api.github.com/users/github";
+                const response = await fetch(url);
+                const data = await response.json();
+                document.getElementById("apiOutput").value = JSON.stringify(data, null, 2);
+            } catch (e) {
+                document.getElementById("apiOutput").value = "Error: " + e.message;
+            }
+        }
+
+        function saveToStorage() {
+            const key = document.getElementById("storageKey").value;
+            const value = document.getElementById("storageValue").value;
+            if (key) {
+                localStorage.setItem(key, value);
+                document.getElementById("storageOutput").value = `Saved: ${key} = ${value}`;
+            }
+        }
+
+        function loadFromStorage() {
+            const key = document.getElementById("storageKey").value;
+            if (key) {
+                const value = localStorage.getItem(key);
+                document.getElementById("storageOutput").value = value ? `${key} = ${value}` : `Key "${key}" not found`;
+            } else {
+                document.getElementById("storageOutput").value = "All localStorage:\n" + JSON.stringify({...localStorage}, null, 2);
+            }
+        }
+
+        function clearStorage() {
+            localStorage.clear();
+            document.getElementById("storageOutput").value = "LocalStorage cleared!";
+        }
+
+        function animateBox() {
+            const box = document.getElementById("animatedBox");
+            box.style.animation = "none";
+            setTimeout(() => {
+                box.style.animation = "pulse 1s ease-in-out, rotate 2s linear";
+            }, 10);
+        }
+
+        // Add animation keyframes
+        const style = document.createElement("style");
+        style.textContent = `
+            @keyframes rotate {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+

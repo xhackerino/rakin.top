@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Area - Ilia Rakin</title>
+    <link rel="stylesheet" href="assets/css/normalize.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <style>
+        .private-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .private-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .private-content {
+            display: none;
+        }
+        .private-content.active {
+            display: block;
+        }
+        .password-form {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text);
+            font-size: 1rem;
+        }
+        .private-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .private-section h2 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="private-container">
+        <div class="password-form" id="passwordForm">
+            <h2>🔒 Private Area</h2>
+            <p>This area is invite-only. Please enter the password to continue.</p>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+            <button class="modal-btn primary" onclick="checkPassword()" style="width: 100%;">Access</button>
+            <p id="passwordError" style="color: #ef4444; margin-top: 10px; display: none;">Incorrect password</p>
+        </div>
+
+        <div class="private-content" id="privateContent">
+            <div class="private-header">
+                <h1>🔒 Private Area</h1>
+                <p>Welcome to the inner circle</p>
+                <a href="/" class="modal-btn secondary">← Back to Home</a>
+            </div>
+
+            <div class="private-section">
+                <h2>📝 Drafts</h2>
+                <p>Work in progress projects and ideas:</p>
+                <ul>
+                    <li>New portfolio design concepts</li>
+                    <li>Side project: Task management app</li>
+                    <li>Blog post drafts</li>
+                </ul>
+            </div>
+
+            <div class="private-section">
+                <h2>🎬 Behind the Scenes</h2>
+                <p>Development process and insights:</p>
+                <ul>
+                    <li>How I built this portfolio</li>
+                    <li>Tech decisions and trade-offs</li>
+                    <li>Lessons learned</li>
+                </ul>
+            </div>
+
+            <div class="private-section">
+                <h2>🎵 Playlists</h2>
+                <p>Current favorite tracks:</p>
+                <ul>
+                    <li>Coding Focus - Deep work playlist</li>
+                    <li>Chill Vibes - Relaxation mix</li>
+                    <li>Energy Boost - High tempo tracks</li>
+                </ul>
+            </div>
+
+            <div class="private-section">
+                <h2>📝 Notes</h2>
+                <p>Personal notes and thoughts:</p>
+                <textarea class="demo-input" style="width: 100%; min-height: 200px;" placeholder="Your private notes here..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple password protection (in production, use proper authentication)
+        const CORRECT_PASSWORD = "welcome2024"; // Change this to your desired password
+        
+        function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            const error = document.getElementById("passwordError");
+            const form = document.getElementById("passwordForm");
+            const content = document.getElementById("privateContent");
+            
+            if (input === CORRECT_PASSWORD) {
+                form.style.display = "none";
+                content.classList.add("active");
+                sessionStorage.setItem("privateAccess", "true");
+            } else {
+                error.style.display = "block";
+                setTimeout(() => {
+                    error.style.display = "none";
+                }, 3000);
+            }
+        }
+
+        // Check if already authenticated
+        if (sessionStorage.getItem("privateAccess") === "true") {
+            document.getElementById("passwordForm").style.display = "none";
+            document.getElementById("privateContent").classList.add("active");
+        }
+
+        // Allow Enter key to submit
+        document.getElementById("passwordInput").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
+

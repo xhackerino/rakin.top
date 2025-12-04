@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Hub - Ilia Rakin</title>
+    <link rel="stylesheet" href="assets/css/normalize.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <style>
+        .link-hub-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .link-hub-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .link-category {
+            margin-bottom: 40px;
+        }
+        .link-category h2 {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .link-card {
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+        }
+        .link-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+        .link-card-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .link-card-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .link-card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="link-hub-container">
+        <div class="link-hub-header">
+            <h1>🔗 Link Hub</h1>
+            <p>All my links in one place</p>
+            <a href="/" class="modal-btn secondary">← Back to Home</a>
+        </div>
+
+        <div class="link-category">
+            <h2>Social Media</h2>
+            <div class="links-grid">
+                <a href="https://linkedin.com/in/irakin" target="_blank" class="link-card">
+                    <div class="link-card-icon">💼</div>
+                    <div class="link-card-title">LinkedIn</div>
+                    <div class="link-card-desc">Professional network</div>
+                </a>
+                <a href="https://github.com/xhackerino" target="_blank" class="link-card">
+                    <div class="link-card-icon">💻</div>
+                    <div class="link-card-title">GitHub</div>
+                    <div class="link-card-desc">Code repositories</div>
+                </a>
+                <a href="https://t.me/xhackerino" target="_blank" class="link-card">
+                    <div class="link-card-icon">📱</div>
+                    <div class="link-card-title">Telegram</div>
+                    <div class="link-card-desc">Business inquiries</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="link-category">
+            <h2>Projects</h2>
+            <div class="links-grid" id="projects-links">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="link-category">
+            <h2>Resources</h2>
+            <div class="links-grid">
+                <a href="/cv-preview.html" class="link-card">
+                    <div class="link-card-icon">📄</div>
+                    <div class="link-card-title">CV Preview</div>
+                    <div class="link-card-desc">View my resume</div>
+                </a>
+                <a href="/cv.pdf" download class="link-card">
+                    <div class="link-card-icon">📥</div>
+                    <div class="link-card-title">Download CV</div>
+                    <div class="link-card-desc">PDF format</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="assets/js/data.js"></script>
+    <script>
+        // Populate project links
+        if (typeof projectsData !== "undefined") {
+            const container = document.getElementById("projects-links");
+            if (container) {
+                container.innerHTML = projectsData.map(project => `
+                    <a href="${project.github}" target="_blank" class="link-card">
+                        <div class="link-card-icon">🚀</div>
+                        <div class="link-card-title">${project.title}</div>
+                        <div class="link-card-desc">${project.description.substring(0, 60)}...</div>
+                    </a>
+                `).join("");
+            }
+        }
+    </script>
+</body>
+</html>
+
