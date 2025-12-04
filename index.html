@@ -45,14 +45,51 @@
 </head>
 
 <body>
-    <div class="language-switcher">
-        <label for="languageSwitcher">🌐</label>
-        <select id="languageSwitcher" class="modern-switcher">
-            <option value="en">English</option>
-            <option value="fi">Suomi</option>
-            <option value="de">Deutsch</option>
-            <option value="ru">Русский</option>
-        </select>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="mobile-header-content">
+            <h1 class="mobile-logo">Ilia Rakin</h1>
+            <div class="mobile-header-actions">
+                <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="search-toggle-btn" id="searchToggle" aria-label="Search">
+                    <span class="search-icon">🔍</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Desktop Controls -->
+    <div class="top-controls">
+        <button class="theme-toggle-btn" id="themeToggleDesktop" aria-label="Toggle theme">
+            <span class="theme-icon">🌙</span>
+        </button>
+        <button class="search-toggle-btn" id="searchToggleDesktop" aria-label="Search">
+            <span class="search-icon">🔍</span>
+        </button>
+        <div class="language-switcher">
+            <label for="languageSwitcher">🌐</label>
+            <select id="languageSwitcher" class="modern-switcher">
+                <option value="en">English</option>
+                <option value="fi">Suomi</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Global Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-input-wrapper">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search... (projects, skills, timeline, etc.)" autocomplete="off">
+                <button class="search-close" id="searchClose">&times;</button>
+            </div>
+            <div class="search-results" id="searchResults">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
     </div>
 
     <main class="main-container">
@@ -262,6 +299,7 @@
     <script type="text/javascript" src="assets/js/data.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
     <script type="text/javascript" src="assets/js/features.js"></script>
+    <script type="text/javascript" src="assets/js/theme-search.js"></script>
 </body>
 
 </html>
