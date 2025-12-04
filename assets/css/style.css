@@ -1522,43 +1522,12 @@ html {
   }
 }
 
-/* Finnish Sauna Mode */
-.sauna-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(2px);
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
+/* Override normalize.css yellow mark background */
+mark {
+  background-color: transparent !important;
+  color: inherit;
 }
 
-.sauna-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.sauna-emoji {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 2rem;
-  z-index: 10000;
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  pointer-events: none;
-}
-
-.sauna-emoji.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.footer-greetings.sauna-active {
-  color: var(--accent);
+.show-banner mark {
+  background-color: transparent !important;
 }

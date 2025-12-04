@@ -454,8 +454,8 @@ if (statusContainer) {
         if (holidays[formattedDate]) {
             statusContainer.textContent = `${translations.en.statusMessages.HOLIDAY} Today is ${holidays[formattedDate]} 👨‍👩‍👧‍👦`;
         } else {
-            const status = schedule[dayOfWeek][hour];
-            if (status && status.message !== statusContainer.textContent) {
+            const status = schedule[dayOfWeek]?.[hour];
+            if (status && typeof status.message === 'string' && status.message !== statusContainer.textContent) {
                 statusContainer.textContent = status.message;
             }
         }
@@ -548,40 +548,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Finnish Sauna Mode
-    const footerGreetings = document.querySelector(".footer-greetings");
-    const saunaOverlay = document.getElementById("saunaOverlay");
-    const saunaEmoji = document.getElementById("saunaEmoji");
-    let saunaTimeout = null;
-
-    function getOriginalFooterText() {
-        const preferredLanguage = loadLanguagePreference();
-        return translations[preferredLanguage].footerGreetings;
-    }
-
-    if (footerGreetings && saunaOverlay && saunaEmoji) {
-        footerGreetings.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Clear any existing timeout
-            if (saunaTimeout) {
-                clearTimeout(saunaTimeout);
-            }
-
-            // Activate sauna mode
-            saunaOverlay.classList.add("active");
-            saunaEmoji.classList.add("active");
-            footerGreetings.classList.add("sauna-active");
-            footerGreetings.textContent = "🇫🇮 Sauna on päällä";
-
-            // Deactivate after 5 seconds
-            saunaTimeout = setTimeout(() => {
-                saunaOverlay.classList.remove("active");
-                saunaEmoji.classList.remove("active");
-                footerGreetings.classList.remove("sauna-active");
-                footerGreetings.textContent = getOriginalFooterText();
-            }, 5000);
-        });
-    }
 });
