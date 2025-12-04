@@ -15,6 +15,11 @@ const translations = {
         holdings: "📈 Holdings",
         wallets: "💰 Wallets",
         timeline: "📝 Timeline",
+        aboutMe: "👤 About Me",
+        techStack: "🛠️ Tech Stack",
+        projects: "🚀 Projects",
+        portfolioGallery: "📸 Portfolio Gallery",
+        publicKeys: "🔐 Public Keys",
         statusPrefix: "Right now I'm:",
         checkingStatus: "⏳ Checking the status...",
         statusMessages: {
@@ -41,6 +46,11 @@ const translations = {
         holdings: "📈 Pääoma",
         wallets: "💰 Lompakot",
         timeline: "📝 Aikajana",
+        aboutMe: "👤 Tietoja Minusta",
+        techStack: "🛠️ Teknologiapino",
+        projects: "🚀 Projektit",
+        portfolioGallery: "📸 Portfolio Galleria",
+        publicKeys: "🔐 Julkiset Avaimet",
         statusPrefix: "Tällä hetkellä olen:",
         checkingStatus: "⏳ Tarkistetaan tilanne...",
         statusMessages: {
@@ -67,6 +77,11 @@ const translations = {
         holdings: "📈 Активы",
         wallets: "💰 Кошельки",
         timeline: "📝 Временная линия",
+        aboutMe: "👤 Обо Мне",
+        techStack: "🛠️ Технологии",
+        projects: "🚀 Проекты",
+        portfolioGallery: "📸 Галерея Портфолио",
+        publicKeys: "🔐 Публичные Ключи",
         statusPrefix: "Сейчас я:",
         checkingStatus: "⏳ Проверяю статус...",
         statusMessages: {
@@ -93,6 +108,11 @@ const translations = {
         holdings: "📈 Beteiligungen",
         wallets: "💰 Wallets",
         timeline: "📝 Zeitlinie",
+        aboutMe: "👤 Über Mich",
+        techStack: "🛠️ Tech-Stack",
+        projects: "🚀 Projekte",
+        portfolioGallery: "📸 Portfolio Galerie",
+        publicKeys: "🔐 Öffentliche Schlüssel",
         statusPrefix: "Zurzeit bin ich:",
         checkingStatus: "⏳ Status wird überprüft...",
         statusMessages: {
@@ -169,19 +189,26 @@ function switchLanguage(lang) {
     if (helloEl) helloEl.textContent = translations[lang].hello;
     if (homepageTextEl) homepageTextEl.textContent = translations[lang].homepage;
     
-    // Update section titles
-    if (sectionTitles.length > 0) {
-        // Contact Me
-        if (sectionTitles[0]) sectionTitles[0].textContent = translations[lang].contactMe;
-        // See Also
-        if (sectionTitles[1]) sectionTitles[1].textContent = translations[lang].seeAlso;
-        // Portfolio
-        if (sectionTitles[2]) sectionTitles[2].textContent = translations[lang].portfolio;
-        // Wallets
-        if (sectionTitles[3]) sectionTitles[3].textContent = translations[lang].wallets;
-        // Timeline
-        if (sectionTitles[4]) sectionTitles[4].textContent = translations[lang].timeline;
-    }
+    // Update section titles - use specific selectors instead of indices
+    const contactSection = document.querySelector(".contact-section .section-title");
+    const seeAlsoSection = document.querySelector(".links-section .section-title");
+    const portfolioSection = document.querySelector(".portfolio-section .section-title");
+    const aboutSection = document.querySelector(".about-section .section-title");
+    const techStackSection = document.querySelector(".tech-stack-section .section-title");
+    const projectsSection = document.querySelector(".projects-section .section-title");
+    const carouselSection = document.querySelector(".portfolio-carousel-section .section-title");
+    const publicKeysSection = document.querySelector(".public-keys-section .section-title");
+    const timelineSection = document.querySelector(".blog-section .section-title");
+    
+    if (contactSection) contactSection.textContent = translations[lang].contactMe;
+    if (seeAlsoSection) seeAlsoSection.textContent = translations[lang].seeAlso;
+    if (portfolioSection) portfolioSection.textContent = translations[lang].portfolio;
+    if (aboutSection) aboutSection.textContent = translations[lang].aboutMe || "👤 About Me";
+    if (techStackSection) techStackSection.textContent = translations[lang].techStack || "🛠️ Tech Stack";
+    if (projectsSection) projectsSection.textContent = translations[lang].projects || "🚀 Projects";
+    if (carouselSection) carouselSection.textContent = translations[lang].portfolioGallery || "📸 Portfolio Gallery";
+    if (publicKeysSection) publicKeysSection.textContent = translations[lang].publicKeys || "🔐 Public Keys";
+    if (timelineSection) timelineSection.textContent = translations[lang].timeline;
     
     // Update contact labels
     if (contactLabels.length >= 3) {

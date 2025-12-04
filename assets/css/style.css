@@ -375,7 +375,11 @@ body {
   border-bottom-color: var(--accent-hover);
 }
 
-/* Wallets Section */
+/* Wallets Section - Archived */
+.wallets-section {
+  display: none !important;
+}
+
 .wallets-list {
   list-style: none;
   padding: 0;
